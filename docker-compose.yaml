@@ -1,0 +1,7 @@
+services:
+  http:
+    image: jdkelley/simple-http-server:latest
+    ports:
+      - "8007:8000"
+    volumes:
+      - ./:/serve
