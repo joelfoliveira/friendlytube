@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import axios from "axios";
 
 import Header from './Header';
 import Playlists from './Playlists';
@@ -9,43 +10,13 @@ function App() {
 
   const [activePlaylist, setActivePlaylist] = useState(0);
   const [activeVideo, setActiveVideo] = useState(0);
+  const [playlists, setPlaylists] = useState([]);
 
-  const playlists = 
-  [
-    {
-        name: "Dança",
-        icon: "",
-        videos: [
-            {
-                name: "video 1",
-                thumbnail: "",
-                video: "QBK6xymmKHM"
-            },
-            {
-                name: "video 2",
-                thumbnail: "",
-                video: "8AHCfZTRGiI"
-            }
-        ]
-    },
-    {
-        name: "Música",
-        icon: "",
-        videos: [
-            {              
-                name: "video 3",
-                thumbnail: "",
-                video: "GilzbcZOcHU"
-            },
-            {
-              
-                name: "video 4",
-                thumbnail: "",
-                video: "NWU33fvPxd0"
-            }
-        ]
-    }
-  ];
+  useEffect(() => {
+    axios.get("playlists.json").then((data) => {
+      setPlaylists(data.data);      
+    });
+  }, []);
 
   return (
     <div className="App">

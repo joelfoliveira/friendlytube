@@ -3,6 +3,10 @@ import YouTube, { YouTubeProps } from 'react-youtube';
 
 function Player({playlists, activePlaylist, activeVideo}) {
 
+  if (playlists.length === 0) {
+    return <div></div>;
+  }
+
   var videoId = playlists[activePlaylist].videos[activeVideo].video;
 
   const opts = {
